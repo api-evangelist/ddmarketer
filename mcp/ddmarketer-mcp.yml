@@ -1,0 +1,10 @@
+generated: '2026-09-28'
+method: probed
+source: https://www.ddmarketer.com/api/mcp
+deployment:
+  mode: remote
+  endpoint: https://www.ddmarketer.com/api/mcp
+  install: ""
+  package: ""
+  auth: api-key
+  verified: probed

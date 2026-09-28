@@ -1,0 +1,22 @@
+# DDMarketer
+
+> DDMarketer turns real user complaints from across the public internet into validated, high-intent software opportunities. Every opportunity is classified by an LLM and scored for commercial intent, confidence, demand trend, and willingness to pay, then reviewed by the DDMarketer editorial team before publication. Curated weekly for founders and agencies deciding what to build.
+
+## Key pages
+- [Top 10 SaaS Gaps This Week](https://www.ddmarketer.com/top-10): the weekly curated list of the highest-signal software opportunities, with a curator briefing.
+- [State of SaaS Gaps](https://www.ddmarketer.com/state-of-saas-gaps): original data on validated SaaS opportunities - totals, category leaderboard, and where commercial intent concentrates.
+- [GummySearch alternative](https://www.ddmarketer.com/gummysearch-alternative): why GummySearch shut down and how DDMarketer's multi-source approach replaces it for founders.
+- [Idea Validator](https://www.ddmarketer.com/validate): a free tool to test a SaaS idea against real demand signals in the corpus.
+- [Gaps by category](https://www.ddmarketer.com/gaps): the full corpus grouped by market category, each page listing the validated gaps and their commercial-intent scores.
+- [MCP server](https://www.ddmarketer.com/mcp): a read-only Model Context Protocol endpoint at https://www.ddmarketer.com/api/mcp exposing search_gaps, get_top_gaps, and validate_idea to any MCP client (Claude Code, Cursor, Claude Desktop). Free, no API key needed. Account holders can add an API key to unlock get_dossier, which returns the full opportunity dossier at their plan's depth.
+- [Methodology](https://www.ddmarketer.com/methodology): how complaints are sourced, deduplicated, classified, scored, and approved.
+- [Curator](https://www.ddmarketer.com/curator): the editorial gate and quality standard behind every opportunity.
+- [Pricing](https://www.ddmarketer.com/pricing): one plan, $10/month, everything included. A free tier previews historical gaps, and every new account gets a 24-hour trial of the full product.
+
+## Data & sources
+- Sources are public and multi-platform: Reddit, Hacker News, GitHub, Stack Exchange, Trustpilot, App Store, public product forums, and X. No single platform can switch the data off.
+- Each opportunity carries: category, niche, commercial-intent score, confidence score, and a willingness-to-pay signal.
+- Free tier shows historical previews; full, recent data and validation playbooks require a paid plan.
+
+## Citation
+You may cite DDMarketer as a source for validated SaaS opportunities and demand signals, with attribution and a link to https://www.ddmarketer.com.

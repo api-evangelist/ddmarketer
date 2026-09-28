@@ -1,29 +1,75 @@
 aid: ddmarketer
 name: DDMarketer
-description: 'DDMarketer is a company surfaced via the API Evangelist harvest backlog (source: new-submission)
-  and added to the network as a stub for full-pipeline profiling.'
+image: https://www.ddmarketer.com/opengraph-image?f9406f769821b2fc
+description: DDMarketer provides a data-driven platform that surfaces validated SaaS opportunities derived from real customer complaints and market
+  gaps. Users can explore weekly updated opportunity lists, access detailed gap analyses, and leverage the MCP server to query validated ideas
+  programmatically. The service offers free tools for idea validation, a paid plan for deeper insights, and integrates with AI coding assistants
+  to streamline product development based on proven demand.
 url: https://raw.githubusercontent.com/api-evangelist/ddmarketer/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:new-submission
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-09-28 (modular-v1; was harvest)
 specificationVersion: '0.20'
 created: '2026-09-28'
 modified: '2026-09-28'
 tags:
 - Company
-apis: []
+- SaaS
+- MarketResearch
+- OpportunityValidation
+- AIIntegration
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Plans
+  url: plans/ddmarketer-plans-pricing.yml
+- type: LLMsTxt
+  url: llms/ddmarketer-llms.txt
+- type: ToolCrosswalk
+  url: mcp/ddmarketer-tool-crosswalk.yml
+- type: MCPServer
+  url: mcp/ddmarketer-mcp.yml
+- type: Hosts
+  url: hosts/ddmarketer-hosts.yml
+- type: Vendors
+  url: vendors/ddmarketer-vendors.yml
+- type: DomainSecurity
+  url: security/ddmarketer-domain-security.yml
 - type: Website
   url: https://www.ddmarketer.com/
 - type: Documentation
   url: https://www.ddmarketer.com/mcp
-x-submission-notes: 'Remote MCP server (Streamable HTTP) https://www.ddmarketer.com/api/mcp: search_gaps,
-  get_top_gaps, validate_idea work without a key; get_dossier needs a free key.'
+- type: APIReference
+  url: https://www.ddmarketer.com/mcp
+- type: GettingStarted
+  url: https://www.ddmarketer.com/validate
+- type: Pricing
+  url: https://www.ddmarketer.com/pricing
+- type: TermsOfService
+  url: https://www.ddmarketer.com/terms
+- type: PrivacyPolicy
+  url: https://www.ddmarketer.com/privacy
+- type: SignUp
+  url: https://www.ddmarketer.com/auth/signup?redirect=%2F
+- type: Login
+  url: https://www.ddmarketer.com/auth/login
+apis:
+- name: DDMarketer MCP
+  description: Streamable HTTP MCP server providing search_gaps, get_top_gaps, and validate_idea operations.
+  humanURL: https://www.ddmarketer.com/mcp
+  baseURL: https://www.ddmarketer.com/api/mcp
+  aid: ddmarketer:ddmarketer-mcp
+x-submission-notes: 'Remote MCP server (Streamable HTTP) https://www.ddmarketer.com/api/mcp: search_gaps, get_top_gaps, validate_idea work without
+  a key; get_dossier needs a free key.'
 x-submission-probe: '2026-09-28: root 200, invented 404, llms 200, /mcp 200'
 x-submitted-by: cianot978@gmail.com (apis.io/add, 2026-09-28)
+x-enrichment:
+  date: '2026-09-28'
+  status: enriched
+  artifacts_added: 10
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

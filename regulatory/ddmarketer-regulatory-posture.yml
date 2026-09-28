@@ -1,0 +1,36 @@
+generated: '2026-09-28'
+method: probed
+source: https://www.ddmarketer.com/privacy
+signals:
+  data_subject_request:
+    evidence:
+      - source: https://www.ddmarketer.com/privacy
+        http_status: 200
+        fetched: "true"
+        quote: "Depending on your location (including under GDPR and CCPA) you may have the right to access, correct, export, restrict, or delete your personal data, and to object to processing."
+        section: "Your rights"
+        note: Users can request access, correction, export, restriction, deletion of their data.
+  subprocessors:
+    evidence:
+      - source: https://www.ddmarketer.com/privacy
+        http_status: 200
+        fetched: "true"
+        quote: "Processors we share data with Supabase (database, authentication), Polar (payments, merchant of record), Brevo (transactional and digest email), Vercel (hosting), Google (analytics), and Upstash (rate-limiting infrastructure; processes IP addresses transiently)."
+        section: "Processors we share data with"
+        note: Lists third‑party processors handling personal data.
+  data_retention:
+    evidence:
+      - source: https://www.ddmarketer.com/privacy
+        http_status: 200
+        fetched: "true"
+        quote: "Account data is kept while your account exists and deleted when you delete your account (Settings → Danger Zone), which cancels billing and removes your authentication record. Newsletter data is kept until you unsubscribe. Purchase records are retained as required for accounting and tax law."
+        section: "Retention"
+        note: Describes how long different data categories are retained.
+  data_residency:
+    evidence:
+      - source: https://www.ddmarketer.com/privacy
+        http_status: 200
+        fetched: "true"
+        quote: "Our processors may store data in the EU and/or the United States under standard contractual clauses or equivalent safeguards."
+        section: "International transfers & security"
+        note: Indicates cross‑border data transfers and safeguards.

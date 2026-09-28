@@ -1,0 +1,22 @@
+generated: '2026-09-28'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://www.ddmarketer.com/pricing
+sources:
+- https://www.ddmarketer.com/pricing
+- https://www.ddmarketer.com/gap/automate-dynamic-pricing-across-otas-to-match-guest-price-66268310
+- https://www.ddmarketer.com/gap/kill-vercel-cold-starts-without-enterprise-pricing-7ab384ce
+- https://www.ddmarketer.com/gap/transparent-dynamic-pricing-that-beats-airbnb-s-smart-pricing-e023a25f
+name: DDMarketer pricing
+audience: business-product
+pricing_basis: per-seat
+plans:
+- name: Free
+  price_text: $0
+  price: 0
+  description: Preview historical gaps, 20 sample opportunities, weekly public Top 10, etc.
+- name: DDMarketer
+  price_text: $10 /month
+  price: 10
+  description: 'Everything included: unlimited opportunity views, full archive, validation playbooks, CSV & white‑label PDF exports, etc.'
+docs: https://www.ddmarketer.com/pricing

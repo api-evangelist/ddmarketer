@@ -1,0 +1,24 @@
+generated: '2026-09-28'
+method: derived
+source: https://www.ddmarketer.com/api/mcp
+crosswalk:
+  - tool: search_gaps
+    category: mcp
+    rest: [search_gaps]
+    binding: operationId
+    confidence: high
+  - tool: get_top_gaps
+    category: mcp
+    rest: [get_top_gaps]
+    binding: operationId
+    confidence: high
+  - tool: validate_idea
+    category: mcp
+    rest: [validate_idea]
+    binding: operationId
+    confidence: high
+  - tool: get_dossier
+    category: mcp
+    rest: [get_dossier]
+    binding: operationId
+    confidence: high
