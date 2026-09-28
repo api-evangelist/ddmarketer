@@ -1,0 +1,29 @@
+aid: ddmarketer
+name: DDMarketer
+description: 'DDMarketer is a company surfaced via the API Evangelist harvest backlog (source: new-submission)
+  and added to the network as a stub for full-pipeline profiling.'
+url: https://raw.githubusercontent.com/api-evangelist/ddmarketer/refs/heads/main/apis.yml
+x-type: company
+x-source: harvest:new-submission
+x-tier: stub
+x-tier-reason: harvest
+specificationVersion: '0.20'
+created: '2026-09-28'
+modified: '2026-09-28'
+tags:
+- Company
+apis: []
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+- FN: APIs.json
+  email: info@apis.io
+common:
+- type: Website
+  url: https://www.ddmarketer.com/
+- type: Documentation
+  url: https://www.ddmarketer.com/mcp
+x-submission-notes: 'Remote MCP server (Streamable HTTP) https://www.ddmarketer.com/api/mcp: search_gaps,
+  get_top_gaps, validate_idea work without a key; get_dossier needs a free key.'
+x-submission-probe: '2026-09-28: root 200, invented 404, llms 200, /mcp 200'
+x-submitted-by: cianot978@gmail.com (apis.io/add, 2026-09-28)
