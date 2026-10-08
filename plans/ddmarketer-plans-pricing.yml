@@ -20,3 +20,23 @@ plans:
   price: 10
   description: 'Everything included: unlimited opportunity views, full archive, validation playbooks, CSV & white‑label PDF exports, etc.'
 docs: https://www.ddmarketer.com/pricing
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: Free
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: DDMarketer
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
