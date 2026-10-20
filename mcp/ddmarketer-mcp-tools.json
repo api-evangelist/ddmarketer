@@ -1,0 +1,464 @@
+{
+  "endpoint": "https://www.ddmarketer.com/api/mcp",
+  "captured": "2026-10-20",
+  "method": "initialize + tools/list (anonymous, no tool called; roadmap#992)",
+  "protocol_version": "2025-06-18",
+  "server_info": {
+    "name": "ddmarketer",
+    "title": "DDMarketer - validated SaaS gaps",
+    "version": "1.0.0"
+  },
+  "result": {
+    "tools": [
+      {
+        "name": "search_gaps",
+        "title": "Search validated SaaS gaps",
+        "description": "Search validated software opportunities by keyword. Each gap is a real, recurring user complaint scored for commercial intent (willingness to pay). Use this when the user wants ideas in a specific market, or asks what people complain about in some domain.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Keywords describing the market or problem space, e.g. 'shopify accounting' or 'developer onboarding'.",
+              "minLength": 3,
+              "maxLength": 300
+            },
+            "category": {
+              "type": "string",
+              "description": "Optional exact category filter, e.g. 'E-commerce', 'DevTools'."
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Max gaps to return (1-25, default 10).",
+              "minimum": 1,
+              "maximum": 25,
+              "default": 10
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "gaps": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Pass to get_dossier (needs an API key) to open this gap in full."
+                  },
+                  "url": {
+                    "type": "string",
+                    "description": "Link to this gap's full dossier. Requires a free account; anonymous visitors are redirected to signup and land back on THIS gap."
+                  },
+                  "publicUrl": {
+                    "type": "string",
+                    "description": "Public page for this gap, readable with no account: the complaint, the scores, and how it compares in its category. Offer this first."
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "The opportunity, phrased as what is missing."
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": "Broad product category, e.g. 'E-commerce' or 'DevTools'. Reusable as the category filter."
+                  },
+                  "niche": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Where the complaints came from"
+                  },
+                  "commercialIntent": {
+                    "type": "number",
+                    "description": "0-100, willingness-to-pay signal"
+                  },
+                  "confidence": {
+                    "type": "number",
+                    "description": "0-100"
+                  }
+                },
+                "required": [
+                  "id",
+                  "title",
+                  "category",
+                  "commercialIntent",
+                  "confidence"
+                ]
+              }
+            },
+            "total": {
+              "type": "number",
+              "description": "Exact number of gaps matching the query in the corpus, NOT the length of the list above -- the list is capped by `limit`. Quote this, not gaps.length, when telling the user how much demand there is."
+            },
+            "hasMore": {
+              "type": "boolean",
+              "description": "True when more gaps matched than the list carries (the query is limit-clamped). Offer to narrow or paginate rather than implying the list is everything."
+            },
+            "scope": {
+              "type": "string",
+              "enum": [
+                "weekly",
+                "all-time"
+              ],
+              "description": "get_top_gaps only: 'weekly' = the source complaints are from the last 7 days; 'all-time' = the week was empty, so these are the highest-intent gaps overall."
+            },
+            "weekOf": {
+              "type": "string",
+              "description": "get_top_gaps only, present with scope 'weekly': the UTC date the 7-day window opened (YYYY-MM-DD)."
+            },
+            "dossierUrl": {
+              "type": "string"
+            },
+            "attribution": {
+              "type": "string"
+            },
+            "upgradeUrl": {
+              "type": "string",
+              "description": "Present only when the caller's plan does not include full dossiers: the page that unlocks them. Surface it when the user wants depth the teaser does not have."
+            },
+            "loose": {
+              "type": "boolean",
+              "description": "True when no gap matched all your terms and these are loosely related instead. Not validation."
+            }
+          },
+          "required": [
+            "gaps",
+            "total",
+            "hasMore",
+            "dossierUrl",
+            "attribution"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": true
+        }
+      },
+      {
+        "name": "get_top_gaps",
+        "title": "This week's highest-intent gaps",
+        "description": "Return the highest commercial-intent validated gaps from the past week, across all categories. Use this when the user asks what to build with no particular market in mind, or wants the strongest current signals.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "description": "Optional exact category filter."
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Max gaps to return (1-25, default 10).",
+              "minimum": 1,
+              "maximum": 25,
+              "default": 10
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "gaps": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Pass to get_dossier (needs an API key) to open this gap in full."
+                  },
+                  "url": {
+                    "type": "string",
+                    "description": "Link to this gap's full dossier. Requires a free account; anonymous visitors are redirected to signup and land back on THIS gap."
+                  },
+                  "publicUrl": {
+                    "type": "string",
+                    "description": "Public page for this gap, readable with no account: the complaint, the scores, and how it compares in its category. Offer this first."
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "The opportunity, phrased as what is missing."
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": "Broad product category, e.g. 'E-commerce' or 'DevTools'. Reusable as the category filter."
+                  },
+                  "niche": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Where the complaints came from"
+                  },
+                  "commercialIntent": {
+                    "type": "number",
+                    "description": "0-100, willingness-to-pay signal"
+                  },
+                  "confidence": {
+                    "type": "number",
+                    "description": "0-100"
+                  }
+                },
+                "required": [
+                  "id",
+                  "title",
+                  "category",
+                  "commercialIntent",
+                  "confidence"
+                ]
+              }
+            },
+            "total": {
+              "type": "number",
+              "description": "Exact number of gaps matching the query in the corpus, NOT the length of the list above -- the list is capped by `limit`. Quote this, not gaps.length, when telling the user how much demand there is."
+            },
+            "hasMore": {
+              "type": "boolean",
+              "description": "True when more gaps matched than the list carries (the query is limit-clamped). Offer to narrow or paginate rather than implying the list is everything."
+            },
+            "scope": {
+              "type": "string",
+              "enum": [
+                "weekly",
+                "all-time"
+              ],
+              "description": "get_top_gaps only: 'weekly' = the source complaints are from the last 7 days; 'all-time' = the week was empty, so these are the highest-intent gaps overall."
+            },
+            "weekOf": {
+              "type": "string",
+              "description": "get_top_gaps only, present with scope 'weekly': the UTC date the 7-day window opened (YYYY-MM-DD)."
+            },
+            "dossierUrl": {
+              "type": "string"
+            },
+            "attribution": {
+              "type": "string"
+            },
+            "upgradeUrl": {
+              "type": "string",
+              "description": "Present only when the caller's plan does not include full dossiers: the page that unlocks them. Surface it when the user wants depth the teaser does not have."
+            },
+            "loose": {
+              "type": "boolean",
+              "description": "True when no gap matched all your terms and these are loosely related instead. Not validation."
+            }
+          },
+          "required": [
+            "gaps",
+            "total",
+            "hasMore",
+            "dossierUrl",
+            "attribution"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": true
+        }
+      },
+      {
+        "name": "validate_idea",
+        "title": "Validate an idea against real demand",
+        "description": "Score a specific product idea against the complaint corpus: how many real complaints match it, how commercial they are, how confident the scoring is, and a verdict. Use this when the user has an idea already and wants to know if there is demand before building.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "idea": {
+              "type": "string",
+              "description": "The idea in plain words, e.g. 'a tool to reconcile Shopify payouts with my accounting' (3-300 chars).",
+              "minLength": 3,
+              "maxLength": 300
+            }
+          },
+          "required": [
+            "idea"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "idea": {
+              "type": "string",
+              "description": "The idea as submitted, echoed back so the caller can confirm what was scored."
+            },
+            "verdict": {
+              "type": "object",
+              "description": "The demand call, derived from how many complaints matched and whether they matched directly.",
+              "properties": {
+                "level": {
+                  "type": "string",
+                  "enum": [
+                    "strong",
+                    "moderate",
+                    "weak",
+                    "none"
+                  ],
+                  "description": "strong = 5+ direct matches; moderate = 2-4 direct; weak = 1 direct match, OR only loosely related complaints were found; none = nothing matched. Only strong and moderate are evidence of demand."
+                },
+                "headline": {
+                  "type": "string",
+                  "description": "One-line summary of the level."
+                },
+                "detail": {
+                  "type": "string",
+                  "description": "The reasoning behind the level and the recommended next step. Surface this to the user rather than paraphrasing the level alone."
+                }
+              },
+              "required": [
+                "level",
+                "headline",
+                "detail"
+              ]
+            },
+            "matchCount": {
+              "type": "number",
+              "description": "How many complaints were scanned and aggregated into the stats below. When verdict.level is 'weak' because only loosely related complaints were found, this counts those loose matches, which do NOT validate the idea. Never report matchCount as direct evidence without checking verdict.level."
+            },
+            "totalMatches": {
+              "type": "number",
+              "description": "Exact total complaints matching in the corpus, even when only the highest-intent ones were scanned (matchCount). Differs from matchCount when demand exceeds the scan window; quote THIS as the breadth of the signal."
+            },
+            "avgCommercialIntent": {
+              "type": "number",
+              "description": "Mean commercial-intent score (0-100, willingness to pay) across the matched complaints. Only meaningful when matchCount > 0."
+            },
+            "avgConfidence": {
+              "type": "number",
+              "description": "Mean confidence score (0-100) of the scoring across the matched complaints."
+            },
+            "topCategories": {
+              "type": "array",
+              "description": "Which product categories the matching complaints fall into, with a count each. Useful for telling the user where the demand actually sits.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "category": {
+                    "type": "string"
+                  },
+                  "count": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "category",
+                  "count"
+                ]
+              }
+            },
+            "attribution": {
+              "type": "string",
+              "description": "Source credit. Cite this when you use the data."
+            },
+            "upgradeUrl": {
+              "type": "string",
+              "description": "Present only when the caller's plan does not include full dossiers: the page that unlocks the matched complaints and their source links. Surface it when the user wants the underlying evidence."
+            }
+          },
+          "required": [
+            "idea",
+            "verdict",
+            "matchCount",
+            "totalMatches",
+            "attribution"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "idempotentHint": false,
+          "openWorldHint": true
+        }
+      },
+      {
+        "name": "get_dossier",
+        "title": "Open the full dossier for a gap",
+        "description": "Open the full dossier for one validated gap: the source complaints and their links, MVP scope, suggested pricing, competitors, risks, and a validation playbook. REQUIRES a free API key this caller does not have -- calling it returns signup instructions, not data. The user creates an account at https://www.ddmarketer.com/auth/signup?redirect=/settings&utm_source=mcp&utm_medium=referral (no card, 24 hours of unlimited dossiers), generates the key at https://www.ddmarketer.com/settings?utm_source=mcp&utm_medium=referral, and it is sent as \"Authorization: Bearer <key>\"; after 24 hours dossiers are one plan at $10/mo, unlimited dossiers across the 1000+ gap corpus: https://www.ddmarketer.com/pricing?utm_source=mcp&utm_medium=referral. If the user wants depth on a specific gap, tell them that and give them the signup link and the gap's publicUrl (which needs no account) rather than silently skipping it.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The gap id returned by search_gaps or get_top_gaps."
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The gap id, echoed for chaining."
+            },
+            "title": {
+              "type": "string",
+              "description": "The opportunity, phrased as what is missing."
+            },
+            "category": {
+              "type": "string",
+              "description": "Broad product category."
+            },
+            "niche": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Narrower market within the category."
+            },
+            "commercial_intent_score": {
+              "type": "number",
+              "description": "0-100, willingness-to-pay signal."
+            },
+            "confidence_score": {
+              "type": "number",
+              "description": "0-100, confidence in the scoring."
+            },
+            "opportunity_brief": {
+              "type": "object",
+              "description": "The full dossier: MVP scope, suggested pricing, competitors, risks. Present only when the caller's plan includes it."
+            },
+            "validation_playbook": {
+              "type": "object",
+              "description": "Step-by-step validation plan. Present only on plans that include the playbook."
+            },
+            "attribution": {
+              "type": "string",
+              "description": "Source credit. Cite this when you use the data."
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "category",
+            "commercial_intent_score",
+            "confidence_score",
+            "attribution"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "idempotentHint": false,
+          "openWorldHint": true
+        }
+      }
+    ]
+  }
+}
