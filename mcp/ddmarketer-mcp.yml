@@ -33,3 +33,27 @@ tool_quality:
   scored: false
   note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
     from Glimind's agent-readiness audit.
+tools:
+- name: search_gaps
+  description: Search validated software opportunities by keyword. Each gap is a real, recurring user
+    complaint scored for commercial intent (willingness to pay). Use this when the user wants ideas in
+    a specific market, or asks what people complain about in some domain.
+- name: get_top_gaps
+  description: Return the highest commercial-intent validated gaps from the past week, across all categories.
+    Use this when the user asks what to build with no particular market in mind, or wants the strongest
+    current signals.
+- name: validate_idea
+  description: 'Score a specific product idea against the complaint corpus: how many real complaints match
+    it, how commercial they are, how confident the scoring is, and a verdict. Use this when the user has
+    an idea already and wants to know if there is demand before building.'
+- name: get_dossier
+  description: 'Open the full dossier for one validated gap: the source complaints and their links, MVP
+    scope, suggested pricing, competitors, risks, and a validation playbook. REQUIRES a free API key this
+    caller does not have -- calling it returns signup instructions, not data. The user creates an account
+    at https://www.ddmarketer.com/auth/signup?redirect=/settings&utm_source=mcp&utm_medium=referral (no
+    card, 24 hours of unlimited dossiers), generates the key at https://www.ddmarketer.com/settings?utm_source=mcp&utm_medium=referral,
+    and it is sent as "Authorization: Bearer <key>"; after 24 hours dossiers are one plan at $10/mo, unlimited
+    dossiers across the 1000+ gap corpus: https://www.ddmarketer.com/pricing?utm_source=mcp&utm_medium=referral.
+    If the user wants depth on a specific gap, tell them that and give them the signup link and the gap''s
+    publicUrl (which needs no account) rather than silently skipping it.'
+tools_count: 4
